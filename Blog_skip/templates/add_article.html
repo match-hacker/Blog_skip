@@ -1,0 +1,56 @@
+{% extends 'index.html' %}
+
+
+
+
+   {% block backend_content %}
+
+                <div class="header">
+
+                </div>
+                <div class="content">
+                <form action="/blog/add_category/" method="post">
+                            {% csrf_token %}
+                        创建文章分类：<input class="form-control" type="text" id="category" name="category">
+
+                            <input class="btn btn-purple" type="submit">
+                </form>
+                <br>
+                    <form action="" method="post">
+                        {% csrf_token %}
+                        <div class="title">
+                            标题：<input class="form-control" type="text" name="title">
+                            文章分类<select name="fl" class="form-control">
+                            {% for tag in category %}
+
+                  <option value="{{ tag.nid }}">{{ tag.title }}</option>
+                            {% endfor %}
+
+                </select>
+                        </div>
+                        <div>
+                            <br>         <br>         <br>         <br>
+                            内容：<br>
+                            <textarea class="form-control" name="article_con" id="article_box" cols="30" rows="10"></textarea>
+                        </div>
+                        <input class="btn btn-success" type="submit">
+                    </form>
+
+                </div>
+                {% csrf_token %}
+                <script src="/static/kindeditor/kindeditor-all.js"></script>
+                <script>
+                    KindEditor.ready(function (k) {
+                        window.editor=k.create("#article_box",{
+                            width:800,
+                            height:400,
+                            resizeType: 0,
+                            uploadJson: "/upload_img/",
+                            extraFileUploadParams: {"csrfmiddlewaretoken": $("[name='csrfmiddlewaretoken']").val()},
+                            filePostName: "img"
+                        })
+
+                    })
+                </script>
+
+                    {% endblock backend_content %}

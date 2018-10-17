@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+  	<head>
+	    <meta charset="utf-8">
+	    <title>欢迎注册</title>
+	    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	    <meta name="description" content="">
+	    <meta name="author" content="">
+
+	    <!-- Bootstrap core CSS -->
+	    <link href="/static/dist/css/bootstrap.css" rel="stylesheet">
+
+		<!-- Jquery -->
+		<script src="/static/js/jquery-3.3.1.js"></script>
+
+		<!-- Bootstrap -->
+	    <script src="/static/dist/js/bootstrap.min.js"></script>
+        <!-- Simplify -->
+        <link href="/static/dist/css/simplify.min.css" rel="stylesheet">
+
+
+
+        <style>
+            #avatar{
+                display: none;
+            }
+            .avatar{
+                width:60px;
+                height:60px;
+                margin-left: 15px;
+            }
+
+        </style>
+  	</head>
+
+  	<body class="overflow-hidden light-background">
+		<div class="wrapper no-navigation preload">
+			<div class="sign-in-wrapper">
+				<div class="sign-in-inner">
+					<div class="login-brand text-center">
+                        <span class="text-primary">注册</span> <strong class="text-skin">Blog</strong>
+					</div>
+					<form action="">
+                        {% for field in form %}
+                            <div class="form-group">
+                            <label for="">{{ field.label }}</label>
+                            {{ field }} <span class="error pull-right"></span>
+                            </div>
+                        {% endfor %}
+                    <div class="form-group">
+                        <label for="avatar">头像<img class="avatar" src="/static/img/tx.png"></label>
+                        <input type="file" id="avatar">
+                    </div>
+
+
+					    <div class="form-group">
+							<div class="custom-checkbox">
+								<input type="checkbox" id="chkRemember">
+								<label for="chkRemember"></label>
+							</div>
+							Remember me
+						</div>
+						<div class="m-top-md p-top-sm">
+							<a class="btn btn-success block reg_btn">Sign in</a>
+						</div>
+
+						<div class="m-top-md p-top-sm">
+                            <span class="error" style="color: red"></span>
+							<div class="font-12 text-center m-bottom-xs">
+								<a href="#" class="font-12">Forgot password ?</a>
+							</div>
+							<div class="font-12 text-center m-bottom-xs">Do not have an account?</div>
+							<a href="signup.html" class="btn btn-default block">Create an accounts</a>
+						</div>
+					</form>
+				</div><!-- ./sign-in-inner -->
+			</div><!-- ./sign-in-wrapper -->
+		</div><!-- /wrapper -->
+
+		<a href="" id="scroll-to-top" class="hidden-print"><i class="icon-chevron-up"></i></a>
+
+
+        {% csrf_token %}
+  <script>
+
+      //图像预览
+      $("#avatar").change(function () {
+          var choose_file=$(this)[0].files[0];  // 选中改变头像路径的对象
+          var reader=new FileReader();  //创建一个阅读器的对象
+          reader.readAsDataURL(choose_file);  //读那个对象的url，自动把结果赋给reader.result,这个过程很长，下面代码拿不到返回值
+          reader.onload=function () {
+              $(".avatar").attr('src',reader.result)
+          }
+      });
+
+      //注册
+      $(".reg_btn").click(function () {
+          var formdata=new FormData();
+          formdata.append("user",$("#id_user").val());
+          formdata.append("pwd",$("#id_pwd").val());
+          formdata.append("repeat_pwd",$("#id_repeat_pwd").val());
+          formdata.append("email",$("#id_email").val());
+          formdata.append("avatar",$("#avatar")[0].files[0]);
+          formdata.append("csrfmiddlewaretoken",$("[name='csrfmiddlewaretoken']").val());
+
+          $.ajax({
+              url:"",
+              type:"post",
+              processData:false,
+              contentType:false,
+              data:formdata,
+              success:function (data) {
+                  if (data.user){
+                      //注册成功
+                      location.href="/login/"
+                  }
+                  else {
+                      console.log(data.error_dict);
+                      $("form span").html("");
+                      $("form .form-group").removeClass("has-error");
+                      $.each(data.error_dict,function (field,error_list) {
+                          if(field=="__all__"){
+                              $("#id_repeat_pwd").next().html(error_list[0]).css("color",'red');
+                              $("#id_repeat_pwd").parent().addClass("has-error")
+//在clean钩子里面自定义验证，多个字段联合起来判断的错误，出现全局错误信息，它的键的名字是__all__
+                          }
+                          $("#id_"+field).next().html(error_list[0]).css("color",'red');
+                          $("#id_"+field).parent().addClass("has-error")
+                      })
+                  }
+
+              }
+
+          })
+      })
+
+  </script>
+
+  	</body>
+</html>

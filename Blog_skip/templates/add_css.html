@@ -1,0 +1,33 @@
+{% extends 'index.html' %}
+
+
+
+
+{% block backend_content %}
+
+    <div class="header">
+
+    </div>
+    <div class="content">
+        <div class="text-primary">
+            上传你博客的个性主题：<br><br>
+
+            <form class="form-group" action="/add_css/" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="form-group">
+										<label class="col-lg-2 control-label">File Upload</label>
+										<div class="col-lg-10">
+											<input type="file" name="css"><br>
+										</div><!-- /.col -->
+                    <button type="submit" class="btn btn-sm btn-success">Sign in</button>
+									</div>
+
+
+            </form>
+        </div>
+
+        <span class="text-info">请上传标准格式的文件，用户名.css（例：enon.css）</span>
+
+    </div>
+{% endblock backend_content %}
+

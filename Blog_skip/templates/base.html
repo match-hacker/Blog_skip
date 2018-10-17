@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    {% load my_tag %}
+
+    	    <!-- Bootstrap core CSS -->
+	    <link href="/static/dist/css/bootstrap.css" rel="stylesheet">
+	    <link href="/static/css/article_detail.css" rel="stylesheet">
+	    <link href="/static/theme/defu.css" rel="stylesheet">
+	    <link href="/static/theme/{{ blog.theme }}" rel="stylesheet">
+
+		<!-- Jquery -->
+		<script src="/static/js/jquery-3.3.1.js"></script>
+
+		<!-- Bootstrap -->
+	    <script src="/static/dist/js/bootstrap.min.js"></script>
+
+</head>
+<body>
+<div class="header">
+    <span class="pull-right"><a href="/blog/backend" style="color: white;">进入后台&nbsp;</a></span>
+    <p class="title">{{ blog.title }}</p>
+</div>
+<div class="container">
+    <div class="col-md-3">
+        {% get_menu username %}
+    </div>
+    <div class="col-md-8">
+    {% block content %}
+    {% endblock content %}
+
+    </div>
+</div>
+</body>
+</html>

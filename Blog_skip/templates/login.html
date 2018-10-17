@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+  	<head>
+	    <meta charset="utf-8">
+	    <title>Simplify Admin</title>
+	    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	    <meta name="description" content="">
+	    <meta name="author" content="">
+
+	    <!-- Bootstrap core CSS -->
+	    <link href="/static/dist/css/bootstrap.css" rel="stylesheet">
+		
+		<!-- Font Awesome -->
+		<link href="/static/dist/css/font-awesome.min.css" rel="stylesheet">
+
+		<!-- ionicons -->
+		<link href="/static/dist/css/ionicons.min.css" rel="stylesheet">
+		
+		<!-- Simplify -->
+		<link href="/static/dist/css/simplify.min.css" rel="stylesheet">
+        	    <!-- Le javascript
+	    ================================================== -->
+	    <!-- Placed at the end of the document so the pages load faster -->
+
+		<!-- Jquery -->
+		<script src="/static/js/jquery-3.3.1.js"></script>
+
+		<!-- Bootstrap -->
+	    <script src="/static/dist/js/bootstrap.min.js"></script>
+
+		<!-- Slimscroll -->
+		<script src='/static/js/jquery.slimscroll.min.js'></script>
+
+		<!-- Popup Overlay -->
+		<script src='/static/js/jquery.popupoverlay.min.js'></script>
+
+		<!-- Modernizr -->
+		<script src='/static/js/modernizr.min.js'></script>
+
+  	</head>
+
+  	<body class="overflow-hidden light-background">
+		<div class="wrapper no-navigation preload">
+			<div class="sign-in-wrapper">
+				<div class="sign-in-inner">
+					<div class="login-brand text-center">
+                        Simplify <strong class="text-skin">Blog</strong>
+					</div>
+					<form>
+						<div class="form-group m-bottom-md">
+							<input type="text" class="form-control" id="user" placeholder="username">
+						</div>
+						<div class="form-group">
+							<input type="password" class="form-control" id="pwd" placeholder="Password">
+						</div>
+
+                        <div class="form-group" >
+						<div class="row">
+                            <div class="col-md-6">
+                                <input type="text" class="form-control" placeholder="验证码" id="valid_code">
+                            </div>
+                            <div class="col-md-6">
+                                <img id="valid_img" width="250" height="40" src="/get_valid_img">
+                            </div>
+                        </div>
+                        </div>
+
+
+					    <div class="form-group">
+							<div class="custom-checkbox">
+								<input type="checkbox" id="chkRemember">
+								<label for="chkRemember"></label>
+							</div>
+							Remember me
+						</div>
+						<div class="m-top-md p-top-sm">
+							<a class="btn btn-success block login_btn">Sign in</a>
+						</div>
+
+						<div class="m-top-md p-top-sm">
+                            <span class="error" style="color: red"></span>
+							<div class="font-12 text-center m-bottom-xs">
+								<a href="#" class="font-12">Forgot password ?</a>
+							</div>
+							<div class="font-12 text-center m-bottom-xs">Do not have an account?</div>
+							<a href="/reg/" class="btn btn-default block">Register new users</a>
+						</div>
+					</form>
+				</div><!-- ./sign-in-inner -->
+			</div><!-- ./sign-in-wrapper -->
+		</div><!-- /wrapper -->
+
+		<a href="" id="scroll-to-top" class="hidden-print"><i class="icon-chevron-up"></i></a>
+
+
+        {% csrf_token %}
+        <script src="/static/js/login.js"></script>
+
+
+
+
+	
+  	</body>
+</html>

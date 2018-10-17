@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  	<head>
+	    <meta charset="utf-8">
+	    <title>创建博客</title>
+	    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	    <meta name="description" content="">
+	    <meta name="author" content="">
+
+	    <!-- Bootstrap core CSS -->
+	    <link href="/static/dist/css/bootstrap.css" rel="stylesheet">
+
+		<!-- Font Awesome -->
+		<link href="/static/dist/css/font-awesome.min.css" rel="stylesheet">
+
+		<!-- ionicons -->
+		<link href="/static/dist/css/ionicons.min.css" rel="stylesheet">
+
+		<!-- Simplify -->
+		<link href="/static/dist/css/simplify.min.css" rel="stylesheet">
+        	    <!-- Le javascript
+	    ================================================== -->
+	    <!-- Placed at the end of the document so the pages load faster -->
+
+		<!-- Jquery -->
+		<script src="/static/js/jquery-3.3.1.js"></script>
+
+		<!-- Bootstrap -->
+	    <script src="/static/dist/js/bootstrap.min.js"></script>
+
+		<!-- Slimscroll -->
+		<script src='/static/js/jquery.slimscroll.min.js'></script>
+
+		<!-- Popup Overlay -->
+		<script src='/static/js/jquery.popupoverlay.min.js'></script>
+
+		<!-- Modernizr -->
+		<script src='/static/js/modernizr.min.js'></script>
+
+  	</head>
+
+  	<body class="overflow-hidden light-background">
+		<div class="wrapper no-navigation preload">
+			<div class="sign-in-wrapper">
+				<div class="sign-in-inner">
+					<div class="login-brand text-center">
+                        Create a <strong class="text-skin">Blog</strong>
+					</div>
+					<form action="/create_blog/" method="post">
+                        {% csrf_token %}
+						<div class="form-group m-bottom-md">
+							<input type="text" class="form-control" id="title" name="title" placeholder="个人博客标题">
+						</div>
+                        <div class="form-group m-bottom-md">
+							<input type="text" class="form-control" id="suffix" name="suffix" placeholder="个人博客后缀">
+						</div>
+                        <div class="form-group m-bottom-md">
+							<input type="text" class="form-control" id="theme" name="theme" placeholder="博客皮肤主题">
+                            <span class="text-info">必须以.css结尾</span>
+						</div>
+
+
+
+						<div class="m-top-md p-top-sm">
+                            <span class="error" style="color: red"></span>
+
+							<div class="font-12 text-center m-bottom-xs">Have you thought clearly?</div>
+                            <button class="btn btn-default col-md-12">Create an accounts</button>
+						</div>
+					</form>
+				</div><!-- ./sign-in-inner -->
+			</div><!-- ./sign-in-wrapper -->
+		</div><!-- /wrapper -->
+
+
+
+
+
+
+
+  	</body>
+</html>
