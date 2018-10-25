@@ -22,7 +22,7 @@ urlpatterns = [
     path('add_article/', views.add_article),
     path('add_category/', views.add_category),
     path('poll/', views.poll),
-    path('get_comment_tree/(\d+)', views.get_comment_tree),
+    re_path('get_comment_tree/(\d+)', views.get_comment_tree),
     path('comment/', views.comment),
     re_path(r'^(?P<username>\w+)/(?P<condition>tag|cate|achrive)/(?P<param>\w+)/$', views.homesite),
     re_path(r'^(?P<username>\w+)/(?P<condition>tag|cate|achrive)/(?P<param>\w+.\d+)/$', views.homesite),

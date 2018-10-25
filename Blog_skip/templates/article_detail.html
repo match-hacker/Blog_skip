@@ -24,12 +24,13 @@
     <div id="digg_word" class="pull-right"></div>
 
     <p>评论树</p>
-    <div class="comment-tree">
+    <div class="comment_tree">
 
     </div>
 
 
     <script>
+                alert(1233);
         (function () {
             $.ajax({
                 url: "/blog/get_comment_tree/"+$("#info").attr("article_id"),
@@ -48,10 +49,7 @@
                         } else{
                             $(".comment_tree").append(s);
                         }
-
-
-
-
+                      alert(123);
 
 
                     })
@@ -91,13 +89,14 @@
                 <p>昵称：<input type="text" id="tbCommentAuthor" class="author" size="20" value="{{ request.user.username }}" disabled></p>
                 <p>评论内容：</p>
                 <textarea name="" id="comment_text" cols="60" rows="10"></textarea>
-                <button class="btn pull-right btn-success">提交</button>
+                <button class="btn pull-right comment_btn">提交</button>
             </div>
         </div>
     </div>
 
     {% csrf_token %}
     <script>
+    // 点赞，与灭
         $("#div_digg .digg").click(function () {
             if ("{{ request.user.username }}") {
                 var is_up = $(this).hasClass("diggit");
@@ -194,6 +193,7 @@
         }
 
     });
+
     {#//绑定回复按钮事件#}
     $(".comment_item .reply").click(function () {
         $("#comment_text").focus();
